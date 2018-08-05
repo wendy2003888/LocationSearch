@@ -1,0 +1,12 @@
+@media (min-width:300px) and (max-width: 400px) {
+  ::ng-deep body{
+    font-size: .65rem;
+  }
+  #info {
+    padding: .5rem .5rem;
+  }
+  ::ng-deep .nav-link {
+    padding: .3rem .4rem;
+    font-size: .65rem;
+  }
+}

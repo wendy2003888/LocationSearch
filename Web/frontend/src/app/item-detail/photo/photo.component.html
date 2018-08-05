@@ -1,0 +1,35 @@
+<div #photo>
+</div>
+<div class="m-3" *ngIf="!hasRecord">
+    <div class="alert alert-warning" role="alert">
+    No Records.
+    </div>
+</div>
+<div class="row" *ngIf="hasRecord">
+        <div class="col-lg-3 col-md-3  col-sm-12">
+        <div class="m-1" *ngFor="let item of photos[0]; index as i; trackBy:identify">
+            <a [href]="item.url" target="_blank">
+            <img [src]="item.url" class="img-thumbnail" style="width:100%;"></a>
+        </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="m-1" *ngFor="let item of photos[1]; index as i; trackBy:identify">
+            <a [href]="item.url" target="_blank">
+            <img [src]="item.url" class="img-thumbnail" style="width:100%;" 
+            [defaultImage]="'https://img.vim-cn.com/16/3fba51e39c197a9f502ad6161f530ba7f1d6eb.jpg'" [lazyLoad]="item.url" [offset]="'200'"></a>
+        </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="m-1" *ngFor="let item of photos[2]; index as i; trackBy:identify">
+            <a [href]="item.url" target="_blank">
+            <img [src]="item.url" class="img-thumbnail" style="width:100%;" 
+            [defaultImage]="'https://img.vim-cn.com/16/3fba51e39c197a9f502ad6161f530ba7f1d6eb.jpg'" [lazyLoad]="item.url" [offset]="'200'"></a>
+        </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="m-1" *ngFor="let item of photos[3]; index as i; trackBy:identify">
+            <a [href]="item.url" target="_blank">
+            <img [src]="item.url" class="img-thumbnail" style="width:100%;" [defaultImage]="'https://img.vim-cn.com/16/3fba51e39c197a9f502ad6161f530ba7f1d6eb.jpg'" [lazyLoad]="item.url" [offset]="'200'"></a>
+        </div>
+        </div>
+</div>

@@ -1,0 +1,31 @@
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>
+
+        
+<div class="table-responsive-sm text-xs-left">
+<table class="table table-sm table-striped">
+  <tbody for="valid_data">
+    <tr *ngFor="let k of valid_data;">
+      <th scope="row" class="text-truncate">{{k[0]}}</th>
+      <td *ngIf="k[0]==='Address' ||  k[0]==='Phone Number' || k[0]==='Price Level' ">
+        {{k[1]}}
+      </td>
+      <td *ngIf="k[0]==='Website' ||  k[0]==='Google Page'" class="text-truncate">
+        <a [href]="k[1]" target="_blank">{{k[1]}}</a>
+      </td>
+      <td *ngIf="k[0]==='Rating'" class="text-truncate">
+        {{k[1]}}
+        <ngb-rating [(rate)]="rate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+      </td>
+      <td *ngIf="k[0]==='Hours'" class="text-truncate">
+        {{k[1]}}
+        <a href="" data-toggle="modal" data-target="#openhourModal">Daily open hours</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+

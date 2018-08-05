@@ -1,0 +1,87 @@
+.red {
+    color: red;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.search-box {
+    margin-top: 0.25em;
+    background-color: rgb(250,251,251); 
+    border: 2px rgb(207,207,207) solid;
+    border-radius: .3em;
+}
+
+@media (max-width: 576px) {
+  :host ::ng-deep body{
+    font-size: .7em;
+  }
+  :host .modal-body{
+    padding: .2em;
+    font-size: .75em;
+  };
+  :host ::ng-deep .table-sm td, .table-sm th {
+    font-size: .7em;
+    padding: .15em;
+  }
+  ::ng-deep .col-form-label-sm {
+    font-size: .7em;
+  }
+  ::ng-deep .form-control-sm{
+    padding: .15em;
+  }
+  html {
+    -webkit-text-size-adjust: 70%;
+  }
+}
+
+@media (max-width: 800px) {
+  :host ::ng-deep body{
+    font-size: .75em;
+  }
+  :host .modal-body{
+    padding: .25em;
+    font-size: .8em;
+  };
+  :host ::ng-deep .table-sm td, .table-sm th {
+    font-size: .75em;
+    padding: .175em;
+  }
+
+  ::ng-deep .col-form-label-sm {
+    font-size: 0.75em;
+  }
+  ::ng-deep .form-control-sm{
+    padding: .175em;
+  }
+  html {
+    -webkit-text-size-adjust: 75%;
+  }
+}
+
+@media (max-width: 1450px) {
+  :host ::ng-deep body{
+    font-size: .8em;
+  }
+  :host .modal-body{
+    padding: .3em;
+    font-size: .85em;
+  }
+
+  :host ::ng-deep .table-sm td, .table-sm th {
+    font-size: .8em;
+    padding: .2em;
+  }
+
+  ::ng-deep .col-form-label-sm {
+    font-size: 0.8em;
+  }
+  ::ng-deep .form-control-sm{
+    padding: .2em;
+  }
+  html {
+    -webkit-text-size-adjust: 80%;
+  }
+}
+

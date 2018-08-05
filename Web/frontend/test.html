@@ -1,0 +1,250 @@
+
+
+<button (click)="toggle()">toggle</button>
+
+<div class="row justify-content-sm-center">
+    <div class="my-carousel" [hidden]="!showBoard && !showFavorite">
+      <div class="parent" [@slide]="activePane">
+        <div class="child" >
+           <div [hidden]="!showBoard">
+            <app-list (inProgress)="onInProgress($event)" 
+            (showBoard)="onBoard($event)"></app-list>
+          </div>
+          <div [hidden]="!showFavorite">
+            <app-favorite></app-favorite>
+          </div>
+        </div>
+        <div class="child">
+          <app-item-detail (onFail)="onFail($event)" (setPanel)="setPanel($event)"></app-item-detail>
+       </div>
+    </div>
+  </div>
+</div>
+
+.carousel {
+    position: relative;
+}
+
+.carousel-item {
+    position: relative;
+    display: none;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+<div class="justify-content-sm-center my-carousel">
+  <div class="parent" [@slide]="activePane">
+    <div class="child" >
+          <div [hidden]="!showBoard">
+            <app-list (inProgress)="onInProgress($event)" 
+            (showBoard)="onBoard($event)"></app-list>
+          </div>
+          <div [hidden]="!showFavorite">
+            <app-favorite></app-favorite>
+          </div>
+  </div>
+  <div class="child">
+    <app-item-detail (onFail)="onFail($event)" (setPanel)="setPanel($event)"></app-item-detail>
+  </div>
+</div>
+
+<div [hidden]="!showBoard">
+          <app-list (inProgress)="onInProgress($event)" 
+                  (showBoard)="onBoard($event)"></app-list>
+      </div>
+      <div [hidden]="!showFavorite">
+          <app-favorite></app-favorite>
+      </div>
+
+      <app-item-detail (onFail)="onFail($event)"></app-item-detail>
+
+       
+           <div class="row justify-content-sm-center">
+         <div id="myBoard" class="carousel slide" data-ride="carousel" data-interval="false" [hidden]="!showBoard && !showFavorite">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="d-block" alt="First slide">
+                <div [hidden]="!showBoard">
+                  <app-list (inProgress)="onInProgress($event)" 
+                  (showBoard)="onBoard($event)"></app-list>
+                </div>
+                <div [hidden]="!showFavorite">
+                  <app-favorite></app-favorite>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="d-block" alt="Second slide">
+              <app-item-detail (onFail)="onFail($event)"></app-item-detail>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  <div class="row" [@slide]="activePane">
+    <div class="child">
+        <div [hidden]="!showBoard">
+          <app-list (inProgress)="onInProgress($event)" 
+          (showBoard)="onBoard($event)"></app-list>
+        </div>
+        <div [hidden]="!showFavorite">
+          <app-favorite></app-favorite>
+        </div>
+    </div>
+    <div class="child">
+      <app-item-detail (onFail)="onFail($event)" (setPanel)="setPanel($event)"></app-item-detail>
+    </div>
+  </div>
+
+  class="text-nowrap"
+       -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+    position: relative;
+      -ms-flex-align: center;
+  align-items: center;
+
+
+
+  <div class="table-responsive-sm row">
+<table class="table table-sm table-hover" style="max-width: 100%; width: 100%;">
+  <thead>
+    <tr for="head" >
+      <th scope="col" *ngFor="let item of head" style="font-size: 0.8em;">{{ item }}</th>
+    </tr>
+  </thead>
+  <tbody for="results">
+    <tr  *ngFor="let item of results; index as i;" 
+    [style.background-color]="lastLoaded===item.place_id ? 'rgb(252,222,137)' : 'transparent'">
+      <th scope="row" class="text-xs-left">{{i + 1}}</th>
+      <td ><img class="w-50" style="width: 50%" [src]="item.icon"></td>
+      <td class="text-nowrap"><div class="col-sm-4">{{ item.name }}</div></td>
+      <td class="text-nowrap"><div class="col-sm-4">{{ item.vicinity }}</div></td>
+      <td >
+        <button class="btn-sm btn-outline-my" (click)="addFavorite(item)" [style.color]="favorite[item.place_id] ? 'rgb(254,218,5)' : 'black' ">
+          <div [hidden]="favorite[item.place_id]">
+          <i class="far fa-star"></i>
+          </div>
+          <div [hidden]="favorite[item.place_id] ? false : true">
+          <i class="fas fa-star"></i>
+          </div>
+        </button>
+      </td>
+      <td><button (click)="detail(item.place_id)" class="btn-sm btn-outline-my" data-slide="next" href="#myBoard"><div><i class="fas fa-chevron-right"></i></div></button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div id="myBoard" class="carousel slide" data-ride="carousel" data-interval="false" data-wrap="false" [hidden]="!showBoard && !showFavorite">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="d-block" alt="First slide">
+          <div [hidden]="!showBoard" class="my-detail">
+              <app-list (inProgress)="onInProgress($event)" 
+              (showBoard)="onBoard($event)"></app-list>
+          </div>
+            <div [hidden]="!showFavorite" class="my-detail">
+              <app-favorite></app-favorite>
+            </div>
+        </div>
+      </div>
+      
+      <div class="carousel-item" style="display: block;">
+        <div class="d-block" alt="Second slide">
+          <div class="row justify-content-center">
+            <div class="col-sm-12 my-detail" [hidden]="activePane==='left'">
+            <app-item-detail (onFail)="onFail($event)"></app-item-detail>
+            </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+href="#carouselExampleControls" role="button" data-slide="prev"
+
+<div class="row justify-content-sm-center">
+  <div class="parent" [@slide]="activePane">
+    <div class="carousel" >
+    <div class="carousel-inner">
+        <div class="d-block">
+          <div [hidden]="!showBoard">
+            <app-list (inProgress)="onInProgress($event)" 
+            (showBoard)="onBoard($event)"></app-list>
+          </div>
+          <div [hidden]="!showFavorite">
+            <app-favorite></app-favorite>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="carousel">
+    <div class="carousel-inner">
+        <div class="d-block">
+          <app-item-detail (onFail)="onFail($event)" (setPanel)="setPanel($event)"></app-item-detail>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<table class="table table-sm table-hover">
+  <thead>
+    <tr for="head" >
+      <th scope="col" *ngFor="let item of head">{{ item }}</th>
+    </tr>
+  </thead>
+  <tbody for="results">
+    <tr  *ngFor="let item of results; index as i;" 
+    [style.background-color]="lastLoaded===item.place_id ? 'rgb(252,222,137)' : 'transparent'">
+      <th scope="row">{{i + 1}}</th>
+      <td ><img class="w-50" [src]="item.icon"></td>
+      <td class="text-nowrap">{{ item.name }}</td>
+      <td class="text-nowrap">{{ item.vicinity }}</td>
+      <td >
+        <button class="btn-sm btn-outline-my" (click)="addFavorite(item)" [style.color]="favorite[item.place_id] ? 'rgb(254,218,5)' : 'black' ">
+          <div [hidden]="favorite[item.place_id]">
+          <i class="far fa-star"></i>
+          </div>
+          <div [hidden]="favorite[item.place_id] ? false : true">
+          <i class="fas fa-star"></i>
+          </div>
+        </button>
+      </td>
+      <td><button (click)="detail(item.place_id)" class="btn-sm btn-outline-my" data-slide="next" href="#myBoard"><div><i class="fas fa-chevron-right"></i></div></button></td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="toggle()">toggle</button>
+
+
+<th scope="row" class="text-xs-left">{{i + 1}}</th>
+      <td ><img class="w-50" style="width: 50%" [src]="item.icon"></td>
+      <td class="text-nowrap"><div class="col-sm-3">{{ item.name }}</div></td>
+      <td class="text-nowrap"><div class="col-sm-3">{{ item.vicinity }}</div></td>
+      <td >
+        <button class="btn-sm btn-outline-my" (click)="addFavorite(item)" [style.color]="favorite[item.place_id] ? 'rgb(254,218,5)' : 'black' ">
+          <div [hidden]="favorite[item.place_id]">
+          <i class="far fa-star"></i>
+          </div>
+          <div [hidden]="favorite[item.place_id] ? false : true">
+          <i class="fas fa-star"></i>
+          </div>
+        </button>
+      </td>
+      <td><button (click)="detail(item.place_id)" class="btn-sm btn-outline-my" data-slide="next" href="#myBoard"><div><i class="fas fa-chevron-right"></i></div></button></td>

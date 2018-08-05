@@ -1,0 +1,97 @@
+<div class="row">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+    
+  
+  <div class="my-3 py-3" [hidden]="!noResult">
+  <div class="alert alert-warning" role="alert">
+    No Records.
+  </div>
+  </div>
+
+  <div [hidden]="noResult" class="pane">
+    <div class="text-center">
+      <h6>{{ detail.name }}</h6>
+    </div>
+
+    <div class="btn-toolbar justify-content-between" role="toolbar">
+      <div class="btn-group" role="group">
+        <button class="btn btn-sm btn-outline-my" (click)="back()"
+        data-slide="prev" href="#myBoard">
+          <div >
+          <i class="fas fa-angle-left"></i>List
+          </div>
+        </button>
+      </div>
+      <div class="btn-group" role="group">
+        <button 
+          (click)="addFavorite()"
+          class="btn btn-sm btn-outline-my" 
+          [hidden]="favorite[detail.place_id]">
+                <div style="width: 1.7rem;">
+                <i class="far fa-star"></i>
+                </div>
+        </button>
+
+        <button 
+          (click)="deleteFavorite()"
+          class="btn btn-sm btn-outline-my" 
+          [style.color]="'rgb(254,218,5)'"
+          [hidden]="favorite[detail.place_id] ? false : true">
+                <div style="width: 1.7rem;">
+                <i class="fas fa-star"></i>
+                </div>
+        </button>
+        <button (click)="twitter()" class="btn btn-sm"><img width="40px;" src="http://cs-server.usc.edu:45678/hw/hw8/images/Twitter.png"></button>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="m-3" [hidden]="!inprogress">
+    <p><ngb-progressbar type="info" [value]="50" [striped]="true" [animated]="true"></ngb-progressbar></p>
+    </div>
+    <div [hidden]="inprogress" >
+        <ngb-tabset [justify]="'end'">
+          <ngb-tab>
+            <ng-template ngbTabTitle>Info</ng-template>
+            <ng-template ngbTabContent>
+              <div class="my-1">
+              <app-info (inProgress)="detailInprogress($event)"></app-info>
+              </div>
+            </ng-template>
+          </ngb-tab>
+
+          <ngb-tab>
+            <ng-template ngbTabTitle>Photos</ng-template>
+            <ng-template ngbTabContent>
+              <div class="my-1">
+                <app-photo (inProgress)="detailInprogress($event)"></app-photo>
+              </div>
+            </ng-template>
+          </ngb-tab>
+
+          <ngb-tab>
+            <ng-template ngbTabTitle>Map</ng-template>
+            <ng-template ngbTabContent>
+              <div class="my-1">
+                <app-map></app-map>
+              </div>
+            </ng-template>
+          </ngb-tab>
+
+          <ngb-tab>
+            <ng-template ngbTabTitle>Reviews</ng-template>
+            <ng-template ngbTabContent>
+              <div class="my-1">
+                <app-review (inProgress)="detailInprogress($event)"></app-review>
+              </div>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+    </div>
+  </div>
+</div>
+</div>
+
+<div #photo>
+</div>

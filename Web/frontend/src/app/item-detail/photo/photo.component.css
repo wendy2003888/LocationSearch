@@ -1,0 +1,11 @@
+
+@media (min-width: 300px){
+    ::ng-deep .card-columns {
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+        -webkit-column-gap: 1rem;
+        -moz-column-gap: 1rem;
+        column-gap: 1rem;
+    }
+}

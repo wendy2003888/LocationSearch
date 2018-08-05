@@ -1,0 +1,89 @@
+<div class="container">
+  <app-search-form (inProgress)="onInProgress($event)" (cleanBoard)="clear($event)"></app-search-form>
+  <div class="row py-3 justify-content-center">
+    <button (click)="onBoard(true)" [ngClass]="resultBtnClass" 
+    id="results" name="results"
+     data-target="#myBoard" data-slide-to="0" >Results</button>
+    <button (click)="onFavorite()" [ngClass]="favoriteBtnClass" 
+    id="favorites" name="favorites"
+    data-target="#myBoard" data-slide-to="0">Favorites</button>
+  </div>
+
+  <div class="none-box" [hidden]="!inprogress">
+    <div>
+    <p><ngb-progressbar type="info" [value]="50" [striped]="true" [animated]="true"></ngb-progressbar></p>
+    </div>
+  </div>
+  <div class="none-box" [hidden]="!noResult">
+    <div class="alert alert-warning" role="alert">
+      No Records.
+    </div>
+  </div>
+    <div class="none-box" [hidden]="!showFail">
+    <div class="alert alert-danger" role="alert">
+      Failed to get Search Result.
+    </div>
+  </div>
+    
+  <div class="row justify-content-sm-center">
+    <div class="col-12 col-sm-12" id="board" style="position: relative; ">
+      <div id="myBoard" class="carousel slide" 
+      data-ride="carousel" data-interval="false"  #myBoard
+      [hidden]="!showBoard && !showFavorite">
+        <div class="carousel-inner" [@slide]="activePane" >
+          <div class="carousel-item active" #b0>
+            <div class="d-block" alt="First slide" >
+              <div [hidden]="!showBoard">
+                  <app-list (inProgress)="onInProgress($event)" 
+                  (showBoard)="onBoard($event)"></app-list>
+              </div>
+              <div [hidden]="!showFavorite">
+                <app-favorite></app-favorite>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" #b1>
+              <div class="d-block" alt="Second slide">
+                <app-item-detail (onFail)="onFail($event)"></app-item-detail>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="openhourModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Open hours</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="justify-content-sm-center">
+        <div class="table-responsive table-responsive-sm">
+        <table class="table table-sm" style="text-align: center;">
+          <tr *ngFor="let item of openhours; index as i;">
+            <th scope="row" *ngIf="i===0">
+              {{ item[0] }}
+            </th>
+            <td *ngIf="i!=0">
+              {{ item[0] }}
+            </td>
+            <td>
+              {{ item[1] }}
+            </td>
+          </tr>
+        </table>
+        </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

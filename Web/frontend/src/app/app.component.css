@@ -1,0 +1,141 @@
+/*@media (min-width:500px) {
+
+}
+
+@include media-breakpoint-down(xs) {
+
+}
+*/
+
+html {
+  font-size: 0.625rem;
+}
+
+
+.myTab {
+/*    float: right !important; 
+*/}
+
+.text-center {
+    text-align: center;
+}
+
+.btn-outline-my {
+  border: solid 0.1em #eeeeee;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+}
+
+.none-box {
+    padding-top: 10%;
+}
+
+.pane {
+    padding-top: 1em;
+}
+
+.myborad {
+  width: 100%;
+}
+
+.my-carousel {
+  position: relative;
+  display: block;
+  overflow: hidden; /* Hide everything that doesn't fit compoennt */
+}
+.parent {
+  width: 200%;
+  height: 100%;
+  display: flex;    /* Align all children in a row */
+  div { flex: 1; }  /* Evenly divide width between children */
+}
+
+.child {
+  display: block;
+  width: 100%;
+}
+
+
+@media (max-width: 576px) {
+  :host ::ng-deep body{
+    font-size: .675em;
+  }
+  :host .modal-body{
+    padding: .2em;
+    font-size: .7rem;
+  };
+  :host ::ng-deep .table-sm td, .table-sm th {
+    font-size: .7rem;
+    padding: .15em;
+  }
+} 
+
+@media  (max-width: 800px) {
+  :host ::ng-deep body{
+    font-size: .7rem;
+  }
+  :host .modal-body{
+    padding: .25em;
+    font-size: .75em;
+  };
+  :host ::ng-deep .table-sm td, .table-sm th {
+    font-size: .7em;
+    padding: .175em;
+  }
+}
+
+@media (max-width: 1450px) {
+  :host ::ng-deep body{
+    font-size: .75rem;
+  }
+
+  :host .modal-body{
+    padding: .3em;
+    font-size: .8em;
+  }
+
+
+  :host ::ng-deep .table-sm td, .table-sm th {
+    font-size: .75rem;
+    padding: .2em;
+  }
+
+  :host ::ng-deep .btn-group-sm>.btn, .btn-sm {
+    padding: .25rem .25rem;
+    font-size: .8rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+  }
+}
+
+
+@media (min-width:300px) and (max-width: 450px) {
+  #info {
+    padding: .5rem .5rem;
+  }
+  ::ng-deep .nav-link {
+    padding: .3rem .4rem;
+    font-size: .65rem;
+  }
+
+  ::ng-deep .my-detail {
+    width: 300px;
+  }
+  :host ::ng-deep .btn-sm {
+    padding: .3rem .3rem;
+    font-size: .625rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1450px) {
+  :host ::ng-deep #board {
+    max-width: 1400px; 
+    width: 1400px;
+  }
+}
+
+
+
+
+
+

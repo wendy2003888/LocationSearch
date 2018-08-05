@@ -1,0 +1,70 @@
+<div [hidden]="!hasRecord">
+    <form method="POST" action="" name="mapform" [formGroup]="mapForm" (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <label class="col-sm-4 col-form-label col-form-label-sm">From</label>
+                <input type="text" class="form-control form-control-sm" #from id="from"
+                 placeholder="Your location" formControlName="from"
+                 places-auto-complete
+                 (place_changed)="placeChanged($event)"
+                 [types]="['geocode']">
+                 <div *ngIf="mapForm.get('from').invalid && ( mapForm.get('from').dirty || mapForm.get('from').touched)" class="red">
+                  <div *ngIf="mapForm.get('from').errors.required || mapForm.get('from').errors.whitespace">
+                    Please enter a place.
+                  </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-4">
+                <label class="col-sm-4 col-form-label col-form-label-sm">To</label>
+                <input type="text" class="form-control form-control-sm" id="to" formControlName="to" disabled>
+            </div>
+            <div class="col-sm-2">
+                <label class="col-sm-2 col-form-label col-form-label-sm text-nowrap">Travel Mode</label>
+                <select class="form-control form-control-sm" formControlName="mode">
+                    <option *ngFor="let opt of modeOptions" [value]="opt.value">{{opt.name}}</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <label class="col-sm-2 col-form-label col-form-label-sm text-nowrap">&nbsp;</label>
+                <button type="submit" id="getDir" class="btn btn-sm btn-primary">Get Directions</button>
+            </div>
+        </div>
+        <div class="form-group row">
+        </div>
+    </form>
+        <div class="col-sm">
+        <button *ngIf="curView==='map'" (click)="toggleView()" class="btn btn-sm btn-outline-my"><img style="max-width: 2.5em;" src="http://cs-server.usc.edu:45678/hw/hw8/images/Pegman.png"></button>
+        <button *ngIf="curView==='street'" (click)="toggleView()" class="btn btn-sm btn-outline-my"><img style="max-width: 2.5em;" src="http://cs-server.usc.edu:45678/hw/hw8/images/Map.png"></button>
+        </div>
+    <div class="col-sm pane">
+        <div [hidden]="curView==='street'">
+            <ngui-map [zoom]="'13'" [center]="destination">
+                  <directions-renderer
+                    panel="#my-panel"
+                    (directions_changed)="directionsChanged()"
+                    [directions-request]="direction">
+                    <marker  [position]="destination"></marker>
+                  </directions-renderer>
+            </ngui-map>
+            <div class="card" id="my-panel"></div>
+        </div>
+        <div [hidden]="curView==='map'">
+            <ngui-map [zoom]="'13'" [center]="destination">
+                    <street-view-panorama  
+                    [position]="destination"
+                    (position_changed)="positionChanged()"
+                    pov="{heading: 165, pitch: 0}"
+                    zoom="1">
+                    </street-view-panorama>
+            </ngui-map>
+        </div>
+    </div>
+</div>
+
+
+<div [hidden]="hasRecord">
+    <div class="alert alert-warning" role="alert">
+    No Records.
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-sm">
+    <div class="btn-group" ngbDropdown>
+        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" ngbDropdownToggle>
+        {{ reviewSource }}
+        </button>
+        <div class="dropdown-menu" ngbDropdownMenu>
+            <a class="dropdown-item" (click)="googleReview()">Google Reviews</a>
+            <a class="dropdown-item" (click)="yelpReview()">Yelp Reviews</a>
+        </div>
+    </div>
+      
+    <div class="btn-group" ngbDropdown role="group">
+        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" ngbDropdownToggle>
+        {{ orderType }}
+        </button>
+        <div class="dropdown-menu" ngbDropdownMenu>
+            <a class="dropdown-item" (click)="sortReview('Default Order')">Default Order</a>
+            <a class="dropdown-item" (click)="sortReview('Highest Rating')">Highest Rating</a>
+            <a class="dropdown-item" (click)="sortReview('Lowest Rating')">Lowest Rating</a>
+            <a class="dropdown-item" (click)="sortReview('Most Recent')">Most Recent</a>
+            <a class="dropdown-item" (click)="sortReview('Least Recent')">Least Recent</a>
+        </div>
+    </div>
+    </div>
+</div>
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>
+    <div class="m-3" [hidden]="hasRecord" [@myFade]="!hasRecord">
+        <div class="alert alert-warning" role="alert">
+        No Records.
+        </div>
+    </div>
+    <div [hidden]="!hasRecord" for="reviews" [@myFade]="hasRecord">
+        <div *ngFor="let review of reviews;" class="card m-1">
+          <div class="card-body">
+                <table class="table-responsive-sm justify-content-center table-sm text-sm-left">
+                    <td class="p-1">
+                        <a [href]="review.author_url" target="_blank">
+                            <img [src]="review.profile_photo_url" class="rounded-circle" style="max-width: 3.5em; min-width: 3.5em; max-height: 3.5em; min-height: 3.5em;">
+                        </a>
+                    </td>
+                    <td class="p-0">
+                        <h5 class="card-title"><a [href]="review.author_url" target="_blank">{{review.author_name}}</a></h5>
+                        <p class="card-text"><small class="text-muted">  
+                            <ngb-rating [(rate)]="review.rating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+                            {{ review.time * 1000 | date:'yyyy-MM-dd HH:mm:ss' }}</small></p>
+                        <p class="card-text">{{ review.text }}</p> 
+                    </td>
+                </table>
+          </div>
+        </div>
+    </div>

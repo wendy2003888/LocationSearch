@@ -1,0 +1,60 @@
+<div class="form-group row">
+  <div class="col-sm text-right">
+    <button (click)="detail(lastLoaded)" 
+    [disabled]="lastLoaded ? false: true"
+    id="details" name="details" 
+    class="btn btn-outline-my btn-sm"
+    data-slide="next" href="#myBoard">Details</button>
+  </div>
+</div>
+
+<div class="table-responsive table-responsive-sm ">
+  <table class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let item of head" style="width: 2">{{item}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of results; index as i;" 
+      (mouseenter) ="mouseEnter($event, item.place_id)"  (mouseleave) ="mouseLeave($event, item.place_id)">
+        <th scope="row" style="width: .8rem;">{{i + 1}}</th>
+        <td style="width: 1rem; max-width: 20px;"><img style="max-width:80%; width: 80%" [src]="item.icon"></td>
+        <td class="text-nowrap" style="width: 1.5rem;">{{ item.name }}</td>
+        <td  class="text-truncate" style="width: 1.5rem;">{{ item.vicinity }}</td>
+        <td style="width: 1.5rem;">
+          <button 
+          (click)="addFavorite(item)"
+          class="btn btn-sm btn-outline-my" 
+          [hidden]="favorite[item.place_id]">
+            <div style="width: 1.3rem;">
+                <i class="far fa-star"></i>
+              </div>
+          </button>
+
+          <button 
+            (click)="deleteFavorite(item.place_id)"
+            class="btn btn-sm btn-outline-my" 
+            [style.color]="'rgb(254,218,5)'"
+            [hidden]="favorite[item.place_id] ? false : true"
+            >
+              <div style="width: 1.3rem;">
+                  <i class="fas fa-star"></i>
+              </div>
+          </button>
+        </td>
+        <td style="width: 1.5rem;"><button (click)="detail(item.place_id)" class="btn-sm btn-outline-my" data-slide="next" href="#myBoard">
+          <div style="width: 1.3rem;">
+          <i class="fas fa-chevron-right"></i>
+          </div>
+        </button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="form-group row justify-content-center">
+    <button  (click)="prePage()" [hidden]="!show_pre" id="previous" class="btn-sm btn-outline-my" type="button"><span style="color: black;">Previous</span></button>
+    <button (click)="nextPage(pagetokens[pagetokens.length - 1])" [hidden]="!show_next" id="next" class="btn-sm btn-outline-my" type="button"><span style="color: black;">Next</span></button>
+</div>
+

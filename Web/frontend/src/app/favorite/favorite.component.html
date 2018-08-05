@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col text-right">
+    <button (click)="detail(lastLoaded)" 
+    [disabled]="lastLoaded ? false: true"
+    id="details" name="details" 
+    class="btn btn-outline-my btn-sm"
+    data-slide="next" href="#myBoard">Details</button>
+  </div>
+</div>
+<div>
+<div class="table-responsive-sm text-xs-left">
+<table class="table table-sm table-hover">
+  <thead>
+    <tr for="head">
+      <th scope="col" *ngFor="let item of head">{{ item }}</th>
+    </tr>
+  </thead>
+  <tbody for="favorite">
+    <tr *ngFor="let item of favorite; index as i;" 
+    [style.background-color]="lastLoaded===item.place_id ? 'rgb(252,222,137)' : 'transparent'">
+      <th scope="row">{{i + 1}}</th>
+      <td><img class="w-50" [src]="item.icon"></td>
+      <td ><small>{{ item.name }}</small></td>
+      <td><small>{{ item.vicinity }}</small></td>
+      <td><button (click)="deleteFavorite(item.place_id)" class="btn btn-outline-my"><i class="fas fa-trash-alt"></i></button></td>
+      <td><button (click)="detail(item.place_id)" class="btn btn-outline-my" data-slide="next" href="#myBoard"><div><i class="fas fa-chevron-right"></i></div></button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
